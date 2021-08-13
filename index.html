@@ -597,7 +597,9 @@
       // 20 px is for avoid the scrollbarr
       if (e.pageX + imageWidth + xOffset + 30 > xMax + window.pageXOffset) {
         $x = e.pageX - imageHeight + window.pageXOffset - xOffset;
-        $x = $x > window.pageXOffset ? $x : window.pageXOffset;
+        if ($x < window.pageXOffset) {
+          $x = window.pageXOffset + xMax - imageHeight - 11;
+        }
       } else {
         $x = e.pageX + xOffset + window.pageXOffset;
       }
