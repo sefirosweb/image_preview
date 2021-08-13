@@ -160,17 +160,19 @@
         const text = '';
       }
 
-      const realWidth = width - border;
       // Create box element
       let previewBox = document.createElement('p');
       previewBox.setAttribute('id', 'preview');
 
-      let imageBox = document.createElement('img');
-      imageBox.style.cssText = `max-width:${realWidth}px`;
+      const imageBox = new Image();
       imageBox.setAttribute('src', imagePreview);
+      if (imageBox.naturalWidth < width) {
+        width = imageBox.naturalWidth;
+      }
+      imageBox.style.cssText = `max-width:${width}px`;
       imageBox.setAttribute('alt', 'Image preview');
 
-      let textBox = document.createElement('div');
+      const textBox = document.createElement('div');
       textBox.textContent = text;
       textBox.style.textAlign = 'center';
       textBox.style.width = '100%';
@@ -234,11 +236,6 @@
 
       $preview.style.top = $y + 'px';
       $preview.style.left = $x + 'px';
-      console.clear();
-      console.log($yMax);
-      console.log($y);
-      console.log(e.target.dataset.preview_width);
-      console.log(`left:${$x}px, top:${$y}px `);
     };
 
     for (let i = 0; i < elements.length; i++) {
