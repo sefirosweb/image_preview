@@ -1,5 +1,5 @@
-const xOffset = 205;
-const yOffset = 205;
+const xOffset = 15;
+const yOffset = 15;
 const border = 6;
 let width;
 
@@ -74,19 +74,19 @@ const addMousemove = (e) => {
     let $x;
     let $y;
 
-    // 20 px is for avoid the scrollbarr
+    // Extra px is for the scrollbar
     if (e.pageX + imageWidth + xOffset + 30 > xMax + window.pageXOffset) {
-        $x = e.pageX - imageHeight + window.pageXOffset - xOffset;
+        $x = e.pageX - imageHeight - xOffset;
         if ($x < window.pageXOffset) {
             $x = window.pageXOffset + xMax - imageHeight - 11;
         }
     } else {
-        $x = e.pageX + xOffset + window.pageXOffset;
+        $x = e.pageX + xOffset;
     }
 
-    // 27 px is for the textbar of image
-    if (e.pageY + imageHeight + yOffset + 29 > yMax + window.pageYOffset) {
-        $y = yMax - imageHeight + window.pageYOffset - yOffset - 3;
+    // Extra px is for the scrollbar
+    if (e.pageY + imageHeight + yOffset + 45 > yMax + window.pageYOffset) {
+        $y = yMax - imageHeight + window.pageYOffset - 45
     } else {
         $y = e.pageY + yOffset;
     }
